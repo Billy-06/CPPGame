@@ -35,9 +35,9 @@
 class GameEnvironment
 {
 private:
-	vector<Character*> characters;
+	std::vector<Character*> characters;
 	Character* player;
-	vector<Environ*> environs;
+	std::vector<Environ*> environs;
 	Position* playerSpawn;
 	Position* playerDestination;
 
@@ -55,7 +55,7 @@ public:
 	 * @param playerSpawn - the position where the player spawns
 	 * @param playerDestination - the position where the player is headed
 	*/
-	GameEnvironment(vector<Character*> characters, Character* player, vector<Environ*> environs, Position* playerSpawn, Position* playerDestination);
+	GameEnvironment(std::vector<Character*> characters, Character* player, std::vector<Environ*> environs, Position* playerSpawn, Position* playerDestination);
 
 	/**
 	 * @brief This is the destructor that deletes the game environment.
@@ -66,7 +66,7 @@ public:
 	 * @brief Getter for the characters property.
 	 * @return vector<Character*> - the list of characters in the game, including ones with enemy status
 	*/
-	vector<Character*> GetCharacters();
+	std::vector<Character*> GetCharacters();
 
 	/**
 	 * @brief Getter for the player property.
@@ -78,7 +78,7 @@ public:
 	 * @brief Getter for the environs property.
 	 * @return vector<Environ*> - the interactable objects in the game (shrubs, oasis, cact etc.)
 	*/
-	vector<Environ*> GetEnvirons();
+	std::vector<Environ*> GetEnvirons();
 
 	/**
 	 * @brief Getter for the playerSpawn property.
@@ -96,7 +96,7 @@ public:
 	 * @brief Setter for the characters property.
 	 * @param characters - the list of pointers to characters in the game, including ones with enemy status
 	*/
-	void SetCharacters(vector<Character*> characters);
+	void SetCharacters(std::vector<Character*> characters);
 
 	/**
 	 * @brief Setter for the player property.
@@ -108,7 +108,7 @@ public:
 	 * @brief Setter for the environs property.
 	 * @param environs - the list of pointers to interactable objects in the game (shrubs, oasis, cact etc.)
 	*/
-	void SetEnvirons(vector<Environ*> environs);
+	void SetEnvirons(std::vector<Environ*> environs);
 
 	/**
 	 * @brief Setter for the playerSpawn property.

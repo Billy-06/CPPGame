@@ -2,6 +2,7 @@
 #include "Position.h"
 #include <string>
 
+class Backpack;
 enum class Booster;
 /**
  * @file Environ.h
@@ -47,7 +48,7 @@ public:
 	 * @param spawnWeight - this integer value determines the spawn weight of the item.
 	 * @param position - this is the position of the item in the environment.
 	*/
-	Environ(Booster booster, int spawnWeight, Position position);
+	Environ(std::string& name, Booster booster, int spawnWeight, Position position);
 
 	/**
 	 * @brief The destructor for the Environ class.
@@ -64,13 +65,13 @@ public:
 	 * @brief Getter for the name property.
 	 * @return a string value representing the name of the item.
 	*/
-	string GetName() const;
+	std::string GetName() const;
 
 	/**
 	 * @brief Setter for the name property.
-	 * @param name - this is the string value representing the name of the item.
+	 * @param newName - this is the string value representing the name of the item.
 	*/
-	void SetName(string name);
+	void SetName(std::string& newName);
 
 	/**
 	 * @brief Getter for the booster property.
@@ -80,9 +81,9 @@ public:
 
 	/**
 	 * @brief Setter for the booster property.
-	 * @param booster - this is the booster enum value to be set.
+	 * @param newBoost - this is the booster enum value to be set.
 	*/
-	void SetBooster(Booster booster);
+	void SetBooster(Booster newBoost);
 
 	/**
 	 * @brief Getter for the spawnWeight property.
@@ -92,21 +93,21 @@ public:
 
 	/**
 	 * @brief Setter for the spawnWeight property.
-	 * @param spawnWeight - this is the integer value representing the spawn weight of the item.
+	 * @param newWeight - this is the integer value representing the spawn weight of the item.
 	*/
-	void SetSpawnWeight(int spawnWeight);
+	void SetSpawnWeight(int newWeight);
 
 	/**
 	 * @brief Getter for the position property.
 	 * @return a pointer to the position of the item in the environment.
 	*/
-	Position* GetPosition() const;
+	const Position* GetPosition() const;
 
 	/**
 	 * @brief Setter for the position property.
-	 * @param position - this is the position of the item in the environment.
+	 * @param newPos - this is the position of the item in the environment.
 	*/
-	void SetPosition(const Position& position);
+	void SetPosition(const Position& newPos);
 
 	/**
 	 * @brief This function allows the player to extract the item from the environment and add it to the backpack.
@@ -117,7 +118,7 @@ public:
 	/**
 	 * @brief This function spawns the item in the environment.
 	*/
-	void Spawn();
+	void Spawn() const;
 };
 
 

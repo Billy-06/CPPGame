@@ -40,19 +40,19 @@ public:
 
 	/**
 	 * @brief The overloaded constructor of the Weapon class.
-	 * @param name - The name of the weapon.
-	 * @param category - The category of the weapon.
-	 * @param position - The position of the weapon.
-	 * @param attackRange - The attack range of the weapon.
-	 * @param attackInterval -	The attack interval of the weapon.
-	 * @param attackDamage - The attack damage of the weapon.
+	 * @param newName - The name of the weapon.
+	 * @param newCat - The category of the weapon.
+	 * @param newPos - The position of the weapon.
+	 * @param attckRange - The attack range of the weapon.
+	 * @param attckInterval -	The attack interval of the weapon.
+	 * @param attckDamage - The attack damage of the weapon.
 	*/
-	Weapon(string name, string category, Position* position, int attackRange, int attackInterval, int attackDamage);
+	Weapon(std::string& newName, std::string& newCat, Position* newPos, int attckRange, float attckInterval, int attckDamage);
 
 	/**
 	 * @brief The default destructor of the Weapon class.
 	*/
-	~Weapon();
+	~Weapon() override;
 
 	/**
 	 * @brief Getter for the attack range of the weapon.
@@ -62,21 +62,21 @@ public:
 
 	/**
 	 * @brief Setter for the attack range of the weapon.
-	 * @param attackRange - the desired attack range of the weapon.
+	 * @param attckRange - the desired attack range of the weapon.
 	*/
-	void SetAttackRange(int attackRange);
+	void SetAttackRange(int attckRange);
 
 	/**
 	 * @brief Getter for the attack interval of the weapon.
 	 * @return an integer representing the attack interval of the weapon.
 	*/
-	int GetAttackInterval() const;
+	float GetAttackInterval() const;
 
 	/**
 	 * @brief Setter for the attack interval of the weapon.
-	 * @param attackInterval - the desired attack interval of the weapon.
+	 * @param attckInterval - the desired attack interval of the weapon.
 	*/
-	void SetAttackInterval(float attackInterval);
+	void SetAttackInterval(float attckInterval);
 
 	/**
 	 * @brief Getter for teh attack damage of the weapon.
@@ -86,23 +86,23 @@ public:
 
 	/**
 	 * @brief Setter for the attack damage of the weapon.
-	 * @param attackDamage - the desired attack damage of the weapon.
+	 * @param attckDamage - the desired attack damage of the weapon.
 	*/
-	void SetAttackDamage(int attackDamage);
+	void SetAttackDamage(int attckDamage);
 
 	/**
 	 * @brief This function allows the player to use the weapon in inflicting damage to another character or an enemy
-	 * @param character - the target character or enemy on whom to inflict the damage.
+	 * @param chrcter - the target character or enemy on whom to inflict the damage.
 	*/
-	virtual void InflictDamage(Character& character);
+	virtual void InflictDamage(Character& chrcter);
 
 	/**
 	 * @brief This function enables the player to upgrade the weapon.
 	*/
-	virtual void Upgrade();
+	void Upgrade() override;
 
 	/**
 	 * @brief This function enables the player to use the weapon.
 	*/
-	virtual void Use();
+	void Use() override;
 };

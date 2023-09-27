@@ -97,7 +97,7 @@ public:
 	 * @brief This function is used to remove an item from the backpack
 	 * @param item - the item to be removed from the backpack
 	*/
-	void RemoveItem(Tool* item);
+	void RemoveItem(Tool* item) const;
 
 	/**
 	 * @brief This function takes the index of the item and is used to remove an item from the backpack
@@ -115,7 +115,7 @@ public:
 	 * @param index - the index of the item to be retrieved from the backpack
 	 * @return A pointer to the item to be retrieved from the backpack
 	*/
-	Tool* GetItem(int index);
+	Tool* GetItem(int index) const;
 
 	/**
 	 * @brief This function is used to clear the backpack
