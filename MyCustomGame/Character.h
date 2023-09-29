@@ -3,8 +3,7 @@
 #include <vector>
 #include "Backpack.h"
 #include "Environ.h"
-#include "Position.h"
-// #include "Tool.h"
+#include "Tool.h"
 
 
 /**
@@ -317,7 +316,7 @@ public:
 	 * @brief Function to drop an item
 	 * @param item - reference to the item to be dropped
 	*/
-	void DropItem(Tool& item);
+	void DropItem(Tool& item) const;
 
 	/**
 	 * @brief Virtual function to print the character's attributes

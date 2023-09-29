@@ -1,6 +1,9 @@
 #pragma once
 #include "Character.h"
-#include "Position.h"
+#include "CharacterTask3.h"
+#include "RattleSnake.h"
+#include "CamelSpider.h"
+#include "Camel.h"
 #include "Environ.h"
 
 /**
@@ -20,7 +23,7 @@
  *
  * Methods:
  * --------
- * > GameEnvironment() :defualt Constructor that initializes the game environment
+ * > GameEnvironment() :default Constructor that initializes the game environment
  * > GameEnvironment(vector<Character*> characters, Character* player, vector<Environ*> environs,
  *    Position* playerSpawn, Position* playerDestination) : Overloaded constructor that initializes the game environment
  * > ~GameEnvironment() : Destructor that deletes the game environment
@@ -41,6 +44,12 @@ private:
 	Position* playerSpawn;
 	Position* playerDestination;
 
+	/**
+	 * @brief Function used for printing out the items in the game environment,
+	 * after their creation in the constructor.
+	*/
+	void CreationMessage() const;
+
 public:
 	/**
 	 * @brief This is the default constructor that initializes the game environment.
@@ -55,7 +64,7 @@ public:
 	 * @param playerSpawn - the position where the player spawns
 	 * @param playerDestination - the position where the player is headed
 	*/
-	GameEnvironment(std::vector<Character*> characters, Character* player, std::vector<Environ*> environs, Position* playerSpawn, Position* playerDestination);
+	GameEnvironment(std::vector<Character*>& characters, Character* player, std::vector<Environ*>& environs, Position* playerSpawn, Position* playerDestination);
 
 	/**
 	 * @brief This is the destructor that deletes the game environment.
@@ -63,40 +72,46 @@ public:
 	~GameEnvironment();
 
 	/**
+	 * @brief Getter for the character names in the game environment.
+	 * @return vector<string> - the list of character names in the game, including ones with enemy status
+	*/
+	std::vector<std::string> GetCharacterNames() const;
+
+	/**
 	 * @brief Getter for the characters property.
 	 * @return vector<Character*> - the list of characters in the game, including ones with enemy status
 	*/
-	std::vector<Character*> GetCharacters();
+	std::vector<Character*> GetCharacters() const;
 
 	/**
 	 * @brief Getter for the player property.
 	 * @return Character* - pointer to the player character
 	*/
-	Character* GetPlayer();
+	Character* GetPlayer() const;
 
 	/**
 	 * @brief Getter for the environs property.
 	 * @return vector<Environ*> - the interactable objects in the game (shrubs, oasis, cact etc.)
 	*/
-	std::vector<Environ*> GetEnvirons();
+	std::vector<Environ*> GetEnvirons() const;
 
 	/**
 	 * @brief Getter for the playerSpawn property.
 	 * @return Position* - pointer to the position where the player spawns
 	*/
-	Position* GetPlayerSpawn();
+	Position* GetPlayerSpawn() const;
 
 	/**
 	 * @brief Getter for the playerDestination property.
 	 * @return Position* - pointer to the position where the player is headed
 	*/
-	Position* GetPlayerDestination();
+	Position* GetPlayerDestination() const;
 
 	/**
 	 * @brief Setter for the characters property.
-	 * @param characters - the list of pointers to characters in the game, including ones with enemy status
+	 * @param chrcters - the list of pointers to characters in the game, including ones with enemy status
 	*/
-	void SetCharacters(std::vector<Character*> characters);
+	void SetCharacters(std::vector<Character*>& chrcters);
 
 	/**
 	 * @brief Setter for the player property.
@@ -106,51 +121,69 @@ public:
 
 	/**
 	 * @brief Setter for the environs property.
-	 * @param environs - the list of pointers to interactable objects in the game (shrubs, oasis, cact etc.)
+	 * @param envs - the list of pointers to interactable objects in the game (shrubs, oasis, cact etc.)
 	*/
-	void SetEnvirons(std::vector<Environ*> environs);
+	void SetEnvirons(std::vector<Environ*>& envs);
 
 	/**
 	 * @brief Setter for the playerSpawn property.
-	 * @param playerSpawn - pointer to the position where the player spawns
+	 * @param plyerSpawn - pointer to the position where the player spawns
 	*/
-	void SetPlayerSpawn(Position* playerSpawn);
+	void SetPlayerSpawn(Position* plyerSpawn);
+
+	/**
+	 * @brief Setter for the player's position property.
+	 * @param plyerPosition - pointer to the position where the player spawns
+	*/
+	void SetPlayerPosition(Position* plyerPosition) const;
 
 	/**
 	 * @brief Setter for the playerDestination property.
-	 * @param playerDestination - pointer to the position where the player is headed
+	 * @param plyrDestination - pointer to the position where the player is headed
 	*/
-	void SetPlayerDestination(Position* playerDestination);
+	void SetPlayerDestination(Position* plyrDestination);
 
 	/**
 	 * @brief This method adds a character to the game environment.
-	 * @param character - pointer to the character to be added
+	 * @param chrcter - pointer to the character to be added
 	*/
-	void AddCharacter(Character* character);
+	void AddCharacter(Character* chrcter);
+
+	/**
+	 * @brief This function is used to add an environ to the game environment.
+	 * @param env - pointer to the environ to be added
+	*/
+	void AddEnviron(Environ* env);
 
 	/**
 	 * @brief This method removes a character from the game environment if slain.
-	 * @param character - pointer to the character to be removed
+	 * @param chrcter - pointer to the character to be removed
 	*/
-	void DropCharacter(Character* character);
+	void DropCharacter(Character* chrcter);
+
+	/**
+	 * @brief This function is used to remove an environ from the game environment.
+	 * @param env - pointer to the environ to be removed
+	*/
+	void DropEnviron(Environ* env);
 
 	/**
 	 * @brief This method shuffles the spawn position of the player.
 	*/
-	void ShuffleSpawnPoint();
+	void ShuffleSpawnPoint() const;
 
 	/**
 	 * @brief This method shuffles the destination position of the player.
 	*/
-	void ShuffleDestination();
+	void ShuffleDestination() const;
 
 	/**
 	 * @brief This method prints the game environment to the console
 	*/
-	void ShowEnvirons();
+	void ShowEnvirons() const;
 
 	/**
 	 * @brief This method prints the characters in the list of characters left in the game, to the console
 	*/
-	void ShowCharacters();
+	void ShowCharacters() const;
 };

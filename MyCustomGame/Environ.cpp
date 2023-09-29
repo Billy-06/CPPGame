@@ -16,15 +16,13 @@ Environ::Environ()
 	position = Position();
 }
 
-Environ::Environ(string& name, Booster booster, int spawnWeight, Position position):
+Environ::Environ(string& name, Booster booster, int spawnWeight, Position& position):
 name(name), booster(booster), spawnWeight(spawnWeight), position(position)
 {
+	cout << "Environ Instatiated Successfully" << endl;
 }
 
-Environ::~Environ()
-{
-	delete this;
-}
+Environ::~Environ()=default;
 
 Environ::Environ(const Environ& environ_)
 {

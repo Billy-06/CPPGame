@@ -22,8 +22,8 @@
  *    int miningSpeed, int durability, int range, int damage) - Parameterized constructor
  * > ~Equipment() - Destructor
  * > Getters and Setters
- * > virtual void Use() - Use the equipment
- * > virtual void Update() - Update the equipment
+ * > override void Use() - Use the equipment
+ * > override void Update() - Update the equipment
  */
 class Equipment : public Tool
 {

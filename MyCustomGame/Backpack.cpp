@@ -22,7 +22,6 @@ Backpack::~Backpack() {
 	for (const Tool* item : items_) {
 		delete item;
 	}
-	delete this;
 }
 
 int Backpack::GetSize() const {
@@ -57,67 +56,77 @@ void Backpack::AddItem(Environ* environ_)
 	switch(environ_->GetBooster())
 	{
 	case Booster::AttackBooster:
-		string attackCat = "AttackBooster";
-		string attackName = environ_->GetName();
+		{
+			string attackCat = "AttackBooster";
+			string attackName = environ_->GetName();
 
-		Tool* toolAttack = new Tool(attackName, attackCat, pos);
+			Tool* toolAttack = new Tool(attackName, attackCat, pos);
 
-		toolAttack->AddEnhancement(attackName);
+			toolAttack->AddEnhancement(attackName);
 
-		// Add he enhancement to the tool's list of enhancements
-		toolAttack->AddEnhancement(attackCat);
-		AddItem(toolAttack);
+			// Add he enhancement to the tool's list of enhancements
+			toolAttack->AddEnhancement(attackCat);
+			AddItem(toolAttack);
 
-		cout << "Custom tool of category: " << attackCat << " created" << endl;
-		break;
-
+			cout << "Custom tool of category: " << attackCat << " created" << endl;
+			break;
+			
+		}
 	case Booster::ShieldBooster:
-		string shieldCat = "ShieldBooster";
-		string shieldName = environ_->GetName();
+		{
+			string shieldCat = "ShieldBooster";
+			string shieldName = environ_->GetName();
 
-		Tool* toolShield = new Tool(shieldName, shieldCat, pos);
+			Tool* toolShield = new Tool(shieldName, shieldCat, pos);
 
-		// Add the enhancement to the enhancement list
-		toolShield->AddEnhancement(shieldName);
-		AddItem(toolShield);
-		cout << "Custom tool of category: " << shieldCat << " created" << endl;
-		break;
+			// Add the enhancement to the enhancement list
+			toolShield->AddEnhancement(shieldName);
+			AddItem(toolShield);
+			cout << "Custom tool of category: " << shieldCat << " created" << endl;
+			break;
+		}
 
 	case Booster::HydrationBooster:
-		string hydroCat = "HydrationBooster";
-		string hydroName = environ_->GetName();
+		{
+			string hydroCat = "HydrationBooster";
+			string hydroName = environ_->GetName();
 
-		Tool* toolHydro = new Tool(hydroName, hydroCat, pos);
+			Tool* toolHydro = new Tool(hydroName, hydroCat, pos);
 
-		// Add the enhancement to the enhancement list
-		toolHydro->AddEnhancement(hydroName);
-		AddItem(toolHydro);
-		cout << "Custom tool of category: " << hydroCat << " created" << endl;
-		break;
+			// Add the enhancement to the enhancement list
+			toolHydro->AddEnhancement(hydroName);
+			AddItem(toolHydro);
+			cout << "Custom tool of category: " << hydroCat << " created" << endl;
+			break;
+		}
 
 	case Booster::HealthBooster:
-		string healthCat = "HealthBooster";
-		string healthName = environ_->GetName();
+		{
+			string healthCat = "HealthBooster";
+			string healthName = environ_->GetName();
 
-		Tool* toolHealth = new Tool(healthName, healthCat, pos);
+			Tool* toolHealth = new Tool(healthName, healthCat, pos);
 
-		// Add the enhancement to the enhancement list
-		toolHealth->AddEnhancement(healthName);
-		AddItem(toolHealth);
-		cout << "Custom tool of category: " << healthCat << " created" << endl;
-		break;
+			// Add the enhancement to the enhancement list
+			toolHealth->AddEnhancement(healthName);
+			AddItem(toolHealth);
+			cout << "Custom tool of category: " << healthCat << " created" << endl;
+			break;
+		}
 
 	case Booster::BackpackBooster:
-		string backpackCat = "BackpackBooster";
-		string backpackName = environ_->GetName();
+		{
+			string backpackCat = "BackpackBooster";
+			string backpackName = environ_->GetName();
 
-		Tool* toolBackpack = new Tool(backpackName, backpackCat, pos);
+			Tool* toolBackpack = new Tool(backpackName, backpackCat, pos);
 
-		// Add the enhancement to the enhancement list
-		toolBackpack->AddEnhancement(backpackName);
-		AddItem(toolBackpack);
-		cout << "Custom tool of category: " << backpackCat << " created" << endl;
-		break;
+			// Add the enhancement to the enhancement list
+			toolBackpack->AddEnhancement(backpackName);
+			AddItem(toolBackpack);
+			cout << "Custom tool of category: " << backpackCat << " created" << endl;
+			break;
+		}
 	}
 
 	delete environ_;
@@ -152,6 +161,16 @@ void Backpack::ShowItems() const
 	{
 		cout << item->GetName() << endl;
 	}
+}
+
+string Backpack::ShowItemsToString() const
+{
+		string items = "";
+	for (const auto item : items_)
+	{
+				items += item->GetName() + "\n";
+	}
+	return items;
 }
 
 Tool* Backpack::GetItem(int index) const

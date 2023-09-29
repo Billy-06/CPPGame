@@ -48,7 +48,7 @@ public:
 	 * @param spawnWeight - this integer value determines the spawn weight of the item.
 	 * @param position - this is the position of the item in the environment.
 	*/
-	Environ(std::string& name, Booster booster, int spawnWeight, Position position);
+	Environ(std::string& name, Booster booster, int spawnWeight, Position& position);
 
 	/**
 	 * @brief The destructor for the Environ class.

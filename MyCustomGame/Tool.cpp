@@ -15,18 +15,20 @@ Tool::Tool()
 	category = "Default Category";
 	position = new Position();
 	enhancements = {  };
+
+	cout << "<Creation Message> Default Tool Created Successfully" << endl;
 };
 
 Tool::Tool(string& newName, string& newCat, Position* newPos):
 name(newName), category(newCat), position(newPos)
 {
 	enhancements = {  };
+	cout << "<Creation Message> Tool Created Successfully" << endl;
 };
 
 Tool::~Tool()
 {
 	delete position;
-	delete this;
 };
 
 bool operator==(const Tool& firstTool, const Tool& secTool)

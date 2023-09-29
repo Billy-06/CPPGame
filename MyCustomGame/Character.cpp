@@ -14,11 +14,14 @@ using namespace std;
 Character::Character()
 {
 	fID_ = static_cast<float>(rand());
-	name_ = "";
-	attackMoves_ = { };
-	strengths_ = { };
-	weaknesses_ = { };
-	fears_ = { };
+	name_ = "[Default] Just a Name";
+	// Create some dummy attack moves
+	attackMoves_ = { "Punch", "Kick", "Headbutt", "Bite", "Scratch" };
+
+	// Create some dummy strengths
+	strengths_ = { "Running", "Sleeping" };
+	weaknesses_ = { "Cake", "Strawberries" };
+	fears_ = { "Sand", "Jokes" };
 
 	hydration_ = 100;
 	friendly_ = true;
@@ -33,10 +36,13 @@ Character::Character()
 Character::Character(string& name, float maxHealth, bool friendly) : name_(name), fMaxHealth_(maxHealth), friendly_(friendly)
 {
 	fID_ = static_cast<float>(rand());
-	attackMoves_ = { };
-	strengths_ = { };
-	weaknesses_ = { };
-	fears_ = { };
+	// Create some dummy attack moves
+	attackMoves_ = { "Punch", "Kick", "Headbutt", "Bite", "Scratch" };
+
+	// Create some dummy strengths
+	strengths_ = { "Running", "Sleeping" };
+	weaknesses_ = { "Cake", "Strawberries" };
+	fears_ = { "Sand", "Jokes" };
 
 	hydration_ = 100;
 	backpack_ = Backpack();
@@ -68,8 +74,6 @@ Character::Character(const Character& character)
 Character::~Character()
 {
 	delete fPosition_;
-	delete this;
-
 }
 
 string Character::GetName() const
@@ -205,6 +209,7 @@ void Character::SetAttackPower(float attackPower)
 
 void Character::ShowAttributes() const
 {
+	string friendly = friendly_ ? "[Status] Friend" : "[Status] No";
 	cout << "Name: " << name_ << endl;
 	cout << "ID: " << fID_ << endl;
 	cout << "Attack Moves: ";
@@ -236,7 +241,7 @@ void Character::ShowAttributes() const
 	cout << "--------------";
 	cout << endl;
 	cout << "Hydration: " << hydration_ << endl;
-	cout << "Friendly: " << friendly_ << endl;
+	cout << "Friendly: " << friendly << endl;
 	cout << "Backpack: " << endl;
 	backpack_.ShowItems();
 	cout << "Position: " << endl;
@@ -244,6 +249,9 @@ void Character::ShowAttributes() const
 	cout << "Max Health: " << fMaxHealth_ << endl;
 	cout << "Current Health: " << fCurrentHealth_ << endl;
 	cout << "Attack Power: " << fAttackPower_ << endl;
+
+	cout << endl;
+	cout << endl;
 }
 
 void Character::ShowAttackMoves() const
@@ -278,24 +286,35 @@ void Character::Shield()
 
 void Character::Move(const std::string& direction)
 {
-	switch (direction)
+	const vector<string> directions = { "north", "east", "south", "west" };
+
+	if (direction == directions[0])
 	{
-	case "north":
 		fPosition_->SetY(fPosition_->GetY() + 1);
-		break;
-	case "east":
-		fPosition_->SetX(fPosition_->GetX() + 1);
-		break;
-	case "south":
-		fPosition_->SetY(fPosition_->GetY() - 1);
-		break;
-	case "west":
-		fPosition_->SetX(fPosition_->GetX() - 1);
-		break;
-	default:
-		cout << "Invalid Direction" << endl;
-		break;
+		cout << name_ << " is walking " << direction << "at speed " << 1 << endl;
 	}
+	else if (direction == directions[1])
+	{
+		fPosition_->SetX(fPosition_->GetX() + 1);
+		cout << name_ << " is walking " << direction << "at speed " << 1 << endl;
+	}
+	else if (direction == directions[2])
+	{
+		fPosition_->SetY(fPosition_->GetY() - 1);
+		cout << name_ << " is walking " << direction << "at speed " << 1 << endl;
+	}
+	else if (direction == directions[3])
+	{
+		fPosition_->SetX(fPosition_->GetX() - 1);
+		cout << name_ << " is walking " << direction << "at speed " << 1 << endl;
+	}
+	else
+	{
+		cout << "Invalid Direction" << endl;
+	}
+
+
+	delete &directions;
 }
 
 void Character::Attack(Character& character)
@@ -392,7 +411,7 @@ void Character::PickItem(Tool& item)
 	cout << "Packed up for the journey ahead." << endl;
 }
 
-void Character::DropItem(Tool& item)
+void Character::DropItem(Tool& item) const
 {
 	Tool* itemPointer = &item;
 

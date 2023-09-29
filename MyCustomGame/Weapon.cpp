@@ -18,13 +18,12 @@ Weapon::Weapon():Tool()
 Weapon::Weapon(string& newName, string& newCat, Position* newPos, int attckRange, float attckInterval, int attckDamage)
 : Tool(newName, newCat, newPos), attackRange(attckRange), attackInterval(attckInterval), attackDamage(attckDamage)
 {
-	cout << "Weapon Created" << endl;
+	cout << "<Creation Message> Weapon Created" << endl;
 }
 
 Weapon::~Weapon()
 {
 	delete position;
-	delete this;
 }
 
 void Weapon::SetAttackRange(int attckRange)
@@ -77,7 +76,7 @@ void Weapon::InflictDamage(Character& chrcter)
 }
 
 
-void Weapon::Upgrade() override
+void Weapon::Upgrade()
 {
 	attackRange += 2;
 	attackDamage += 5;
@@ -91,12 +90,12 @@ void Weapon::Upgrade() override
 	cout << "--------------------------------"<< endl;
 }
 
-void Weapon::Use() override
+void Weapon::Use()
 {
 	cout << "Weapon Used" << endl;
 	cout << "--------------------------------"<< endl;
 	cout << "Strike Attack Range: " << attackRange << endl;
 	cout << "Strike Attack Damage: " << attackDamage << endl;
-	cout << " Strike Attack Interval: " << attackInterval << endl;
+	cout << "Strike Attack Interval: " << attackInterval << endl;
 	cout << "--------------------------------"<< endl;
 }

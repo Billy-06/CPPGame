@@ -19,11 +19,12 @@
  * > Enhancement {vector<string>}: additional enhancements to the tool.
  *
  *	Methods:
- *	> Constructor: creates a tool object
- *	> Destructor: destroys a tool object
- *	> Getters and Setters
- *	> Upgrade: enables player to upgrade the tool
- *	> Use: enables player to use the tool
+ *	--------
+ * > Constructor: creates a tool object
+ * > Destructor: destroys a tool object
+ * > Getters and Setters
+ * > Upgrade: enables player to upgrade the tool
+ * > Use: enables player to use the tool
  *
  */
 class Tool

@@ -13,18 +13,19 @@ Equipment::Equipment(): Tool()
 	durability = 10;
 	range= 4;
 	damage = 10;
+
+	cout << "<Creation Message> Default Equipment Created" << endl;
 }
 
 Equipment::Equipment(std::string& newName, std::string& newCat, Position* newPos, int miningSpeed, float durability, int range, int damage)
 : Tool(newName, newCat, newPos), miningSpeed(miningSpeed), durability(durability), range(range), damage(damage)
 {
-	cout << "Equipment Created" << endl;
+	cout << "<Creation Message> Equipment Created" << endl;
 }
 
 Equipment::~Equipment()
 {
 	delete position;
-	delete this;
 }
 
 int Equipment::GetMiningSpeed() const
@@ -67,7 +68,7 @@ void Equipment::SetDamage(int dmg)
 	this->damage = dmg;
 }
 
-void Equipment::Use() override
+void Equipment::Use()
 {
 	if (durability <= 0)
 	{

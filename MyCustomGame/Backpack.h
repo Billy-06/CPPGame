@@ -111,6 +111,12 @@ public:
 	void ShowItems() const;
 
 	/**
+	 * @brief This function is used to return a string representation of the items in the backpack
+	 * @return a string representation of the items in the backpack
+	*/
+	std::string ShowItemsToString() const;
+
+	/**
 	 * @brief This function takes an index value and is used to get an item from the backpack
 	 * @param index - the index of the item to be retrieved from the backpack
 	 * @return A pointer to the item to be retrieved from the backpack
