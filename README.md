@@ -22,6 +22,14 @@ Install Visual Studio [here](https://visualstudio.microsoft.com/downloads/)
 
 ![Image of the UML Diagram](static/uml.png)
 
-![Output Without Using the file CharacterTask3.h and CharacterTask3.cpp](static/ExpectedOutput.mp4)
+https://github.com/Billy-06/CPPGame/assets/80063605/ed3245b5-ff04-4948-ac2d-5bd4bf07663b
 
-![Output With CharacterTask3.h and CharacterTask3.cpp included](static/Expected%20Output%20Cht3.mp4)
+
+
+![Output Without Using the file CharacterTask3.h and CharacterTask3.cpp](https://github.com/Billy-06/CPPGame/assets/80063605/ed3245b5-ff04-4948-ac2d-5bd4bf07663b)
+
+![Output With CharacterTask3.h and CharacterTask3.cpp included](https://github.com/Billy-06/CPPGame/assets/80063605/8eeea009-ecf4-448b-8971-4cd26bcac59e)
+
+https://github.com/Billy-06/CPPGame/assets/80063605/8eeea009-ecf4-448b-8971-4cd26bcac59e
+
+
