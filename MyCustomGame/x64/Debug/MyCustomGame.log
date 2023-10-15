@@ -6,6 +6,8 @@
   Environ.cpp
   Equipment.cpp
   GameEnvironment.cpp
+  Iterator1D.cpp
+  Iterator2D.cpp
   main.cpp
   Position.cpp
   RattleSnake.cpp

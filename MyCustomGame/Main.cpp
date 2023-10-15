@@ -13,6 +13,5 @@ int main()
 
 	GameEnvironment game;
 
-
 	return 0;
 }

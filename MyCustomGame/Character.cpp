@@ -71,10 +71,7 @@ Character::Character(const Character& character)
 	shieldUp_ = character.shieldUp_;
 }
 
-Character::~Character()
-{
-	delete fPosition_;
-}
+Character::~Character()=default;
 
 string Character::GetName() const
 {

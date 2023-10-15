@@ -59,10 +59,7 @@ Camel::Camel(const Camel& camel)
 	waterReserve_ = camel.waterReserve_;
 }
 
-Camel::~Camel()
-{
-	delete fPosition_;
-}
+Camel::~Camel()= default;
 
 int Camel::GetWaterReserve() const
 {

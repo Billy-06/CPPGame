@@ -1,5 +1,11 @@
 #include "GameEnvironment.h"
 
+#include <cstdlib>
+#include <algorithm>
+
+#include "Iterator1D.h"
+#include "Iterator2D.h"
+
 using namespace std;
 /**
  * @file GameEnvironment.cpp
@@ -8,6 +14,44 @@ using namespace std;
  * This is the implementation of the GameEnvironment class defined in GameEnvironment.h
  */
 GameEnvironment::GameEnvironment()
+{
+	// Initialise the basic utils for the default constructor
+	BasicUtils();
+
+	// Print out the creation message
+	CreationMessage();
+
+	// Call the takecommands function to start the game
+	TakeCommands();
+}
+
+GameEnvironment::GameEnvironment(vector<Character*>& characters, Character* player, vector<Environ*>& environs,
+		Position* playerSpawn, Position* playerDestination)
+	: characters(characters), player(player), environs(environs), playerSpawn(playerSpawn), playerDestination(playerDestination)
+{
+	// Print out the creation message
+	CreationMessage();
+
+	// Comment out the following line to view Task 3 Tests output
+	TakeCommands();
+}
+
+GameEnvironment::~GameEnvironment()
+{
+	delete player;
+	delete playerSpawn;
+	delete playerDestination;
+	for (auto& chrcter : characters)
+	{
+		delete chrcter;
+	}
+	for (auto& env : environs)
+	{
+		delete env;
+	}
+}
+
+void GameEnvironment::BasicUtils()
 {
 	// Instantiate the characters
 	string char1 = "Mickey", char2 = "Ndegwah", char3 = "Myka", char4 = "Camille", char5 = "Kanade";
@@ -55,63 +99,6 @@ GameEnvironment::GameEnvironment()
 	environs = { environ1, environ2, environ3, environ4 };
 	playerSpawn = startPos;
 	playerDestination = endPos;
-
-	string Ch3Name = "Curly", Ch3Name2 = "Larry";
-	// Added for Task 3
-	CharacterTask3 characterTask3 = CharacterTask3(Ch3Name, 100.0f, false);
-	CharacterTask3 characterTask3b = CharacterTask3(Ch3Name2, 100.0f, false);
-
-	cout << "Character Task 3: " << endl;
-	cout << characterTask3 << endl;
-
-	cout << "Let the attack begin" << endl;
-	while (characterTask3.GetCurrentHealth() > 0 && characterTask3b.GetCurrentHealth() > 0)
-	{
-		int turn = rand() % 2;
-		if (turn == 1)
-		{
-			cout << characterTask3.GetName() << " attacks " << characterTask3b.GetName() << endl;
-			characterTask3 >> characterTask3b;
-		} else
-		{
-			cout << characterTask3b.GetName() << " attacks " << characterTask3.GetName() << endl;
-			characterTask3b >> characterTask3;
-		}
-
-	}
-
-	// Issue Command
-	cout << "Issue Command: " << endl;
-	cout << "Available Commands are: attack, move, shield, jump" << endl;
-	cout << "Provide a value after the command e.g attack 56, shield 120" << endl;
-	cin >> characterTask3;
-
-
-	// Print out the creation message
-	CreationMessage();
-}
-
-GameEnvironment::GameEnvironment(vector<Character*>& characters, Character* player, vector<Environ*>& environs,
-		Position* playerSpawn, Position* playerDestination)
-	: characters(characters), player(player), environs(environs), playerSpawn(playerSpawn), playerDestination(playerDestination)
-{
-		CreationMessage();
-}
-
-GameEnvironment::~GameEnvironment()
-{
-	delete player;
-	delete playerSpawn;
-	delete playerDestination;
-	for (auto& chrcter : characters)
-	{
-		delete chrcter;
-	}
-	for (auto& env : environs)
-	{
-		delete env;
-	}
-	delete &characters;
 }
 
 void GameEnvironment::CreationMessage() const
@@ -322,6 +309,219 @@ void GameEnvironment::ShuffleSpawnPoint() const
 	cout << "Player Spawn Point Shuffled Successfully" << endl;
 }
 
+void GameEnvironment::ProblemSet1()
+{
+	string Ch3Name = "Curly", Ch3Name2 = "Larry";
+	// Added for Task 3
+	CharacterTask3 characterTask3 = CharacterTask3(Ch3Name, 100.0f, false);
+	CharacterTask3 characterTask3b = CharacterTask3(Ch3Name2, 100.0f, false);
+
+	cout << "Character Task 3: " << endl;
+	cout << characterTask3 << endl;
+
+	cout << "Let the attack begin" << endl;
+	while (characterTask3.GetCurrentHealth() > 0 && characterTask3b.GetCurrentHealth() > 0)
+	{
+		int turn = rand() % 2;
+		if (turn == 1)
+		{
+			cout << characterTask3.GetName() << " attacks " << characterTask3b.GetName() << endl;
+			characterTask3 >> characterTask3b;
+		}
+		else
+		{
+			cout << characterTask3b.GetName() << " attacks " << characterTask3.GetName() << endl;
+			characterTask3b >> characterTask3;
+		}
+
+	}
+
+	// Issue Command
+	cout << "Issue Command: " << endl;
+	cout << "Available Commands are: attack, move, shield, jump" << endl;
+	cout << "Provide a value after the command e.g attack 56, shield 120" << endl;
+	cin >> characterTask3;
+}
+
+void GameEnvironment::ProblemSet2()
+{
+	// 1D array of strings
+	string array[10] = {
+		"Sword", "Axe", "Mace", "Dagger", "Bow",
+		"Crossbow", "Spear", "Halberd", "Flail", "Morning Star"
+	};
+
+	// 1D array of strings
+	string arrayTwo[10] = {
+		"Wind", "Fire", "Storm", "Snow Flake", "Noose",
+		"Rope", "Kerosene", "Shears", "Torch", "Grinder"
+	};
+
+	// 2D array of strings
+	string** anotherArray = new string*[4];
+	for(int i = 0; i < 4; i++)
+	{
+		anotherArray[i] = new string[4];
+	}
+
+	// 2D array of strings
+	string** yetAnotherArray = new string * [4];
+	for (int i = 0; i < 4; i++)
+	{
+		yetAnotherArray[i] = new string[4];
+	}
+
+	string items[4][4] = {
+		{"Sword", "Axe", "Mace", "Dagger"},
+		{"Bow", "Crossbow", "Spear", "Halberd"},
+		{"Flail", "Morning Star", "Spade", "Shovel"},
+		{"Crow Bar", "Wheelbarrow", "Hammer", "Knife"}
+	};
+
+	string itemsTwo[4][4] = {
+		{"Wind", "Fire", "Storm", "Snow Flake"},
+		{"Noose", "Rope", "Kerosene", "Shears"},
+		{"Torch", "Grinder", "Petrol", "Igniter"},
+		{"Screw Driver", "Spanner", "Pliers", "Wrench"}
+	};
+
+	for(int i=0; i < 4; i++)
+	{
+		for(int j=0; j < 4; j++)
+		{
+			anotherArray[i][j] = items[i][j];
+		}
+	}
+
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			yetAnotherArray[i][j] = itemsTwo[i][j];
+		}
+	}
+
+	////////////////// Task 3 ////////////////
+
+	// Pass the 1D array to the 1D iterator
+	Iterator1D toolSet1D = Iterator1D(array, 10);
+	Iterator1D toolSet1D2 = Iterator1D(arrayTwo, 10);
+
+	// Pass the 2D array to the 2D iterator
+	Iterator2D toolSet2D = Iterator2D(anotherArray, 4, 4);
+	Iterator2D toolSet2D2 = Iterator2D(yetAnotherArray, 4, 4);
+
+	--toolSet1D;
+	cout << "Start of 1D Array (Iteration)" << endl;
+	while(!toolSet1D.AtBeginning())
+	{
+		cout << "Tool: " << toolSet1D--.GetCurrentItem() << endl;
+
+	}
+	cout << "End of 1D Array (Iteration)" << endl;
+	cout << "-----------------" << endl;
+	cout  << endl;
+
+	cout << "Start of 2D Array (Iteration)" << endl;
+	while(!toolSet2D.ReachedEnd())
+	{
+		cout << "Tool: " << toolSet2D.GetCurrentItem() << endl;
+		++toolSet2D;
+	}
+	cout << "End of 2D Array (Iteration)" << endl;
+	cout << "-----------------" << endl;
+	cout  << endl;
+
+	cout << "-----------------" << endl;
+	cout << "--- 1D Bags (Before Swapping)---" << endl;
+	string char1 = "Danger Character", char2 = "Guard Character";
+
+	auto* character1 = new CharacterTask3(char1, 100.0f, false);
+	auto* character2 = new CharacterTask3(char2, 100.0f, false);
+
+	character1->SetBag1D(&toolSet1D);
+	character2->SetBag1D(&toolSet1D2);
+
+	character1->SetBag2D(&toolSet2D);
+	character2->SetBag2D(&toolSet2D2);
+
+	cout << character1->GetName() << " has the following tools: " << endl;
+	character1->InventoryGet();
+	for (int i = 0; i < 10; i++)
+	{
+		cout << "\t > " << character1->InventoryNext() << endl;
+	}
+
+	cout << character2->GetName() << " has the following tools: " << endl;
+	character2->InventoryGet();
+	for (int i = 0; i < 10; i++)
+	{
+		cout << "\t > " << character2->InventoryNext() << endl;
+	}
+
+	cout << "--- 1D Bags Swapped ---" << endl;
+	character1->SwapBags1D(*character2);
+
+	cout << character1->GetName() << " has the following tools: " << endl;
+	character1->InventoryGet();
+	for (int i = 0; i < 10; i++)
+	{
+		cout << "\t > " << character1->InventoryNext() << endl;
+	}
+
+	cout << character2->GetName() << " has the following tools: " << endl;
+	character2->InventoryGet();
+	for (int i = 0; i < 10; i++)
+	{
+		cout << "\t > " << character2->InventoryNext() << endl;
+	}
+
+	cout << "-----------------" << endl;
+	cout  << endl;
+
+	///////// Task 4 /////////////
+
+
+	cout << "-----------------" << endl;
+	cout << "--- 2D Bags (Before Swapping)---" << endl;
+
+	cout << character1->GetName() << " has the following tools: " << endl;
+	character1->InventoryGet2D();
+	for (int i = 0; i < 16; i++)
+	{
+		cout << "\t > " << character1->InventoryNext2D() << endl;
+	}
+
+	cout << character2->GetName() << " has the following tools: " << endl;
+	character2->InventoryGet2D();
+	for (int i = 0; i < 16; i++)
+	{
+		cout << "\t > " << character2->InventoryNext2D() << endl;
+	}
+
+	cout << "--- 2D Bags Swapped ---" << endl;
+	character1->SwapBags2D(*character2);
+
+	cout << character1->GetName() << " has the following tools: " << endl;
+	character1->InventoryGet2D();
+	for (int i = 0; i < 16; i++)
+	{
+		cout << "\t > " << character1->InventoryNext2D() << endl;
+	}
+
+	cout << character2->GetName() << " has the following tools: " << endl;
+	character2->InventoryGet2D();
+	for (int i = 0; i < 16; i++)
+	{
+		cout << "\t > " << character2->InventoryNext2D() << endl;
+	}
+
+	cout << "-----------------" << endl;
+	cout << endl;
+
+}
+
+
 void GameEnvironment::ShuffleDestination() const
 {
 	// generate a random number between 0 and the size of the environs list
@@ -347,6 +547,147 @@ void GameEnvironment::ShowCharacters() const
 	cout << "Characters List: " << endl;
 	for (auto& character : characters)
 	{
-		cout << character->GetName() << endl;
+		character->Print();
 	}
+}
+
+ void GameEnvironment::TakeCommands() const
+ {
+	 cout << endl;
+	 cout << "==================================" << endl;
+	 cout << "=====\t\tBEGIN HERE\t\t====" << endl;
+	 cout << "==================================" << endl;
+
+	bool playing = true;
+	const string com_1 = "help", com_2 = "about", com_3 = "p_set1", com_4 = "p_set2",
+	com_5 = "p_set3", com_6 = "p_set4", com_7 = "show_character_names",
+	com_8 = "show_characters", com_9 = "show_environs", com_10 = "quit", com_11 = "exit", com_12 = "clear";
+
+	while (playing)
+	{
+		string response;
+		cout << "How would you like to proceed? Please type 'help' to see the available commands: " << endl;
+		getline(cin, response);
+
+		// Converting the response to lowercase
+		response = StringToLower(response);
+
+		if (response == com_1) {
+			cout << "Available Commands are:" << endl;
+			cout << "-----------------------" << endl;
+			cout << "\t -------- Stuff in The Game ---------" << endl;
+			cout << "\t> help: \tshows this help page" << endl;
+			cout << "\t> about: \tShows a summary of structure of the game intended on Problem set 1" << endl;
+			cout << "\t> p_set1: \tShow the expected output of Problem Set 1 as per requirements in the assignment" << endl;
+			cout << "\t> p_set2: \tShow the expected output of Problem Set 2 as per requirements in the assignment" << endl;
+			cout << "\t> p_set3: \tShow the expected output of Problem Set 3 as per requirements in the assignment" << endl;
+			cout << "\t> p_set4: \tShow the expected output of Problem Set 3 as per requirements in the assignment" << endl;
+			cout << "\t> show_character_names: \tShow the names of the characters created in the game" << endl;
+			cout << "\t> show_characters: \tShow the full set of attributes in characters created in the game" << endl;
+			cout << "\t> show_environs: \tShow the environs created in the game" << endl;
+			cout << "\t --------- Utilities ------------" << endl;
+			cout << "\t> clear: \tClears the screen" << endl;
+			cout << "\t> quit: \tExits the game" << endl;
+			cout << "\t> exit: \tExits the game" << endl;
+		}
+		else if (response == com_2) {
+			cout << "In the scorching sun of the desert, and the sand filled wind blowing hot air" << endl;
+			cout << " on the player's face. The player is mean to make it across the savanna. Mapless! However, the Camel has hints for the player, ";
+			cout << "the camel also has a water reserve in case the player is dehydrated. It is possible fo the player to die form dehydration in this harsh desert.";
+			cout << "The player also needs to stay away from cacti, rattle snakes, camelSpiders (yea they're a thing) and any enemies on the way. The player only has villagers as friends and the camel.";
+			cout << "As you travel through this savanna conserve your energy (there's a dehydration rate that automatically gorges upon your hydration value), find the camel, get the hints to the oasis.";
+			cout << "Evade enemies if you haven't yet gotten to the oasis to prevent wasting your energy. Get to the oasis and drink up, fight your foes and get a cross the Savanna. Then you're safe." << endl;
+			cout << "Good Luck!! Haha!" << endl;
+		}
+		else if (response == com_3) {
+			cout << "==================================" << endl;
+			cout << "===	Problem Set 1 (START)	===" << endl;
+			cout << "==================================" << endl;
+			cout << endl;
+			ProblemSet1();
+			cout << endl;
+			cout << "===	Problem Set 1 (END)		===" << endl;
+		}
+		else if (response == com_4) {
+			cout << "=================================" << endl;
+			cout << "===	Problem Set 2 (START)  ===" << endl;
+			cout << "=================================" << endl;
+			cout << endl;
+			ProblemSet2();
+			cout << endl;
+			cout << "===	Problem Set 2 (END)	   ===" << endl;
+		}
+		else if (response == com_5) {
+			cout << "=================================" << endl;
+			cout << "===	Problem Set 3 (START)  ===" << endl;
+			cout << "=================================" << endl;
+			cout << endl;
+			cout << "Coming Soon!! " << endl;
+			cout << endl;
+			cout << "===	Problem Set 3 (END)	   ===" << endl;
+		}
+		else if (response == com_6) {
+			cout << "=================================" << endl;
+			cout << "===	Problem Set 4 (START)  ===" << endl;
+			cout << "=================================" << endl;
+			cout << endl;
+			cout << "Coming Soon!! " << endl;
+			cout << endl;
+			cout << "===	Problem Set 4 (END)	   ===" << endl;
+		}
+		else if (response == com_7) {
+			cout << "==================================" << endl;
+			cout << "===	Character Names (START)	===" << endl;
+			cout << "==================================" << endl;
+			cout << endl;
+			cout << CharacterTask3::PrintVector(GetCharacterNames()) << endl;
+			cout << endl;
+			cout << "===	Character Names (END)	===" << endl;
+		}
+		else if (response == com_8) {
+			cout << "==============================" << endl;
+			cout << "===	Characters (START)	===" << endl;
+			cout << "==============================" << endl;
+			cout << endl;
+			ShowCharacters();
+			cout << endl;
+			cout << "===	Characters (END)	===" << endl;
+		}
+		else if (response == com_9) {
+			cout << "=================================" << endl;
+			cout << "===	Environs (START)  ===" << endl;
+			cout << "=================================" << endl;
+			cout << endl;
+			ShowEnvirons();
+			cout << endl;
+			cout << "===	Environs (END)	   ===" << endl;
+		}
+		else if (response == com_10 || response == com_11) {
+			playing = false;
+		}
+		else if (response == com_12) {
+			// Clear the console screen on windows
+			#if defined _WIN32
+						system("cls");
+			#elif defined (__LINUX__) || defined(__gnu_linux__) || defined(__linux__)
+						system("clear");
+			#elif defined (__APPLE__)
+						system("clear");
+			#endif
+
+		}
+		else {
+			cout << "Invalid Command. Please try again or type 'quit' to leave the game" << endl;
+			
+		}
+
+	}
+
+ }
+
+
+ string GameEnvironment::StringToLower(string& str)
+{
+	transform(str.begin(), str.end(), str.begin(), ::tolower);
+	return str;
 }

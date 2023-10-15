@@ -1,0 +1,2 @@
+﻿  EnvironmentSetup.cpp
+C:\Users\User\Documents\GitHub\UniProjects\COS3008_DataStructures\MyCustomGame\CPPGoogleTests\EnvironmentSetup.cpp(17,1): error C2857: '#include' statement specified with the /Ycpch.h command-line option was not found in the source file

@@ -13,84 +13,108 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\UtilityStructures">
+      <UniqueIdentifier>{ab668355-e6cf-4425-a238-ee99de445ce7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameInteractables">
+      <UniqueIdentifier>{6ca879f9-b32e-4470-a114-555b8aaa9e86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameInteractables">
+      <UniqueIdentifier>{12b4e7aa-78e8-4ae6-a008-ce84fb61519a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UtilityStructures">
+      <UniqueIdentifier>{fbbb8d1b-9527-4a05-9e5d-3c5d89134186}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Character.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Iterator2D.h">
+      <Filter>Header Files\UtilityStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="Iterator1D.h">
+      <Filter>Header Files\UtilityStructures</Filter>
     </ClInclude>
     <ClInclude Include="Backpack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tool.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Environ.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Position.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Equipment.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Weapon.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEnvironment.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RattleSnake.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CamelSpider.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\GameInteractables</Filter>
     </ClInclude>
     <ClInclude Include="Camel.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\GameInteractables</Filter>
+    </ClInclude>
+    <ClInclude Include="CamelSpider.h">
+      <Filter>Header Files\GameInteractables</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Header Files\GameInteractables</Filter>
     </ClInclude>
     <ClInclude Include="CharacterTask3.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\GameInteractables</Filter>
+    </ClInclude>
+    <ClInclude Include="Environ.h">
+      <Filter>Header Files\GameInteractables</Filter>
+    </ClInclude>
+    <ClInclude Include="Equipment.h">
+      <Filter>Header Files\GameInteractables</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEnvironment.h">
+      <Filter>Header Files\GameInteractables</Filter>
+    </ClInclude>
+    <ClInclude Include="Position.h">
+      <Filter>Header Files\GameInteractables</Filter>
+    </ClInclude>
+    <ClInclude Include="RattleSnake.h">
+      <Filter>Header Files\GameInteractables</Filter>
+    </ClInclude>
+    <ClInclude Include="Tool.h">
+      <Filter>Header Files\GameInteractables</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Header Files\GameInteractables</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Character.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Backpack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tool.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Environ.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Weapon.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Equipment.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameEnvironment.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Position.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Backpack.cpp">
+      <Filter>Source Files\GameInteractables</Filter>
     </ClCompile>
     <ClCompile Include="Camel.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\GameInteractables</Filter>
     </ClCompile>
     <ClCompile Include="CamelSpider.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\GameInteractables</Filter>
     </ClCompile>
-    <ClCompile Include="RattleSnake.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Character.cpp">
+      <Filter>Source Files\GameInteractables</Filter>
     </ClCompile>
     <ClCompile Include="CharacterTask3.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\GameInteractables</Filter>
+    </ClCompile>
+    <ClCompile Include="Environ.cpp">
+      <Filter>Source Files\GameInteractables</Filter>
+    </ClCompile>
+    <ClCompile Include="Equipment.cpp">
+      <Filter>Source Files\GameInteractables</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEnvironment.cpp">
+      <Filter>Source Files\GameInteractables</Filter>
+    </ClCompile>
+    <ClCompile Include="Position.cpp">
+      <Filter>Source Files\GameInteractables</Filter>
+    </ClCompile>
+    <ClCompile Include="RattleSnake.cpp">
+      <Filter>Source Files\GameInteractables</Filter>
+    </ClCompile>
+    <ClCompile Include="Tool.cpp">
+      <Filter>Source Files\GameInteractables</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Source Files\GameInteractables</Filter>
+    </ClCompile>
+    <ClCompile Include="Iterator1D.cpp">
+      <Filter>Source Files\UtilityStructures</Filter>
+    </ClCompile>
+    <ClCompile Include="Iterator2D.cpp">
+      <Filter>Source Files\UtilityStructures</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

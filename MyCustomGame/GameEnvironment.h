@@ -72,6 +72,11 @@ public:
 	~GameEnvironment();
 
 	/**
+	 * @brief This method is used to initialise teh items needed by the default constructor
+	*/
+	void BasicUtils();
+
+	/**
 	 * @brief Getter for the character names in the game environment.
 	 * @return vector<string> - the list of character names in the game, including ones with enemy status
 	*/
@@ -173,6 +178,18 @@ public:
 	void ShuffleSpawnPoint() const;
 
 	/**
+	 * @brief This methods answers the questions in Problem Set 1 of the assignment.
+	*/
+	static void ProblemSet1();
+
+	/**
+	 * @brief This methods answers the questions in Problem Set 2 of the assignment. it creates
+	 * two new characters and two new bags the demonstrates the bag swapping affair. It also
+	 * prints the characters and their bags to the console.
+	*/
+	static void ProblemSet2();
+
+	/**
 	 * @brief This method shuffles the destination position of the player.
 	*/
 	void ShuffleDestination() const;
@@ -186,4 +203,14 @@ public:
 	 * @brief This method prints the characters in the list of characters left in the game, to the console
 	*/
 	void ShowCharacters() const;
+
+	/**
+	 * @brief This method takes commands from the user and executes them, while managing the game loop.
+	*/
+	void TakeCommands() const;
+
+	/**
+	 * @brief This method is used to convert strings to lowercase.
+	*/
+	static std::string StringToLower(std::string& str);
 };

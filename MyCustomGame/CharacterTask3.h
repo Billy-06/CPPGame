@@ -4,6 +4,8 @@
 #include "Backpack.h"
 #include "Environ.h"
 #include "Tool.h"
+#include "Iterator1D.h"
+#include "Iterator2D.h"
 
 
 /**
@@ -76,6 +78,9 @@ protected:
 	bool shieldUp_;
 	// Additional field for Character task 3
 	std::string fMessage_;
+
+	Iterator1D* bag1D_;
+	Iterator2D* bag2D_;
 
 
 public:
@@ -230,6 +235,78 @@ public:
 	void SetPosition(const Position& fPosition);
 
 	/**
+	 * @brief Getter for the character's bag1D
+	 * @return a pointer to the character's bag1D
+	*/
+	Iterator1D* GetBag1D() const;
+
+	/**
+	 * @brief Setter for the character's bag1D
+	 * @param bag1D - the desired bag1D to be assigned to the character
+	*/
+	void SetBag1D(Iterator1D* bag1D);
+
+	/**
+	 * @brief This method is used to get the next item in the character's inventory
+	 * @return a string value of the next item in the character's inventory
+	*/
+	std::string InventoryNext() const;
+
+	/**
+	 * @brief This method is used to get the previous item in the character's inventory
+	 * @return a string value of the previous item in the character's inventory
+	*/
+	std::string InventoryPrev() const;
+
+	/**
+	 * @brief This method prints out the current item in the character's inventory
+	*/
+	void InventoryGet() const;
+
+	/**
+	 * @brief This method is used to swap the contents of the character's 1D bags with
+	 * another character's bags
+	 * @param chrcter - the character with whom to swap bags
+	*/
+	void SwapBags1D(CharacterTask3& chrcter);
+
+	/**
+	 * @brief This method is used to swap the contents of the character's 2D bags with
+	 * another character's bags
+	 * @param chrcter 
+	*/
+	void SwapBags2D(CharacterTask3& chrcter);
+
+	/**
+	 * @brief This method is used to retrieve the next items in the 2D bags
+	 * @return a string value representing the next item in the 2D bags
+	*/
+	std::string InventoryNext2D() const;
+
+	/**
+	 * @brief This method is used to retrieve the previous items in the 2D bags
+	 * @return a string value representing the previous item in the 2D bags
+	*/
+	std::string InventoryPrev2D() const;
+
+	/**
+	 * @brief This method prints out the current item in the character's 2D bags
+	*/
+	void InventoryGet2D() const;
+
+	/**
+	 * @brief Getter for the character's bag2D
+	 * @return pointer to the character's bag2D
+	*/
+	Iterator2D* GetBag2D() const;
+
+	/**
+	 * @brief Setter fo the character's bag2D
+	 * @param bag2D - the desired bag2D to be assigned to the character
+	*/
+	void SetBag2D(Iterator2D* bag2D);
+
+	/**
 	 * @brief This operator calls the PrintStat method.
 	 * @param out - the ostream object to be used in printing out the message
 	 * @param character - the character object to be printed
@@ -262,7 +339,7 @@ public:
 	 * @param vector - the vector to be printed
 	 * @return  a string containing the contents of the vector
 	*/
-	std::string PrintVector(const std::vector<std::string>& vector) const;
+	static std::string PrintVector(const std::vector<std::string>& vector);
 
 	/**
 	 * @brief Getter for the character's message

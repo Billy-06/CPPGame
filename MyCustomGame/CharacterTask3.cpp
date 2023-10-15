@@ -190,6 +190,77 @@ void CharacterTask3::SetPosition(const Position& position)
 	fPosition_ = new Position(position);
 }
 
+Iterator1D* CharacterTask3::GetBag1D() const
+{
+	return bag1D_;
+}
+
+void CharacterTask3::SetBag1D(Iterator1D* bag1D)
+{
+	bag1D_ = bag1D;
+}
+
+string CharacterTask3::InventoryNext() const
+{
+	++*bag1D_;
+	return bag1D_->GetCurrentItem();
+}
+
+string CharacterTask3::InventoryPrev() const
+{
+	--*bag1D_;
+	return bag1D_->GetCurrentItem();
+}
+
+void CharacterTask3::InventoryGet() const
+{
+	cout <<  bag1D_->GetCurrentItem() << endl;
+}
+
+void CharacterTask3::SwapBags1D(CharacterTask3& chrcter)
+{
+	Iterator1D* temp = bag1D_;
+	this->SetBag1D(chrcter.GetBag1D());
+	chrcter.SetBag1D(temp);
+	cout << GetName() << " has swapped Bags with" << chrcter.GetName() << endl;
+}
+
+void CharacterTask3::SwapBags2D(CharacterTask3& chrcter)
+{
+	Iterator2D* temp = bag2D_;
+	this->SetBag2D(chrcter.GetBag2D());
+	chrcter.SetBag2D(temp);
+	cout << GetName() << " has swapped Bags with" << chrcter.GetName() << endl;
+}
+
+
+Iterator2D* CharacterTask3::GetBag2D() const
+{
+	return bag2D_;
+}
+
+string CharacterTask3::InventoryNext2D() const
+{
+	++*bag2D_;
+	return bag2D_->GetCurrentItem();
+}
+
+string CharacterTask3::InventoryPrev2D() const
+{
+	--*bag2D_;
+	return bag2D_->GetCurrentItem();
+}
+
+void CharacterTask3::InventoryGet2D() const
+{
+	cout << bag2D_->GetCurrentItem() << endl;
+}
+
+void CharacterTask3::SetBag2D(Iterator2D* bag2D)
+{
+	bag2D_ = bag2D;
+}
+
 ostream& operator<<(ostream& out, const CharacterTask3& character)
 {
 	return out << "CharacterTask3 Stats" << character.PrintStat() << endl;
@@ -283,12 +354,12 @@ istream& operator>>(CharacterTask3 & character, CharacterTask3& character2)
 }
 
 
-string CharacterTask3::PrintVector(const vector<string>& vector) const
+string CharacterTask3::PrintVector(const vector<string>& vector)
 {
 	string result = "";
 	for (auto& item : vector)
 	{
-		result += item + " ";
+		result += "> " + item + " \n";
 	}
 
 	return result;
