@@ -6,6 +6,7 @@
 #include "Tool.h"
 #include "Iterator1D.h"
 #include "Iterator2D.h"
+#include "SkillAdvancement.h"
 
 
 /**
@@ -33,6 +34,9 @@
  * > _fAttackPower {float} : The attack power of the character
  * > _sensingRadius {float} : The sensing radius of the character
  * > _shieldUp {bool} : The shield status of the character
+ * > _bag1D {Iterator1D} : The 1D bag of the character
+ * > _bag2D {Iterator2D} : The 2D bag of the character
+ * > _skillNodes {SkillAdvancement}: The skill nodes of the character
  * // Additional traits for Task 3
  * > _fMessage {string}
  *
@@ -51,6 +55,18 @@
  * > Interact(environ Environ&) {int} : Interacts with the environment. Returns either an increased or decreased health level
  * > PickItem(item Item) {void} : Adds an item to the character's backpack
  * > DropItem(item Item) {void} : Removes an item from the character's backpack
+ * > InventoryNext() {string} : Returns the next item in the character's inventory
+ * > InventoryPrev() {string} : Returns the previous item in the character's inventory
+ * > InventoryGet() {void} : Prints out the current item in the character's inventory
+ * > SwapBags1D(character Character) {void} : Swaps the contents of the character's 1D bags with another character's bags
+ * > SwapBags2D(character Character) {void} : Swaps the contents of the character's 2D bags with another character's bags
+ * > InventoryNext2D() {string} : Returns the next item in the character's 2D bags
+ * > InventoryPrev2D() {string} : Returns the previous item in the character's 2D bags
+ * > InventoryGet2D() {void} : Prints out the current item in the character's 2D bags
+ * > operator>>(character Character) {void} : Allows the characters to battle
+ * > operator>>(in istream, character Character) {void} : Allows the user to send a message to the character
+ * > operator<<(out ostream, character Character) {void} : Prints out the character's attributes
+ * > PrintVector(vector vector<string>) {string} : Prints out the contents of a vector
  * > Attack(character Character) {void} : Attacks another character
  * > Print() {void} : Prints the character's attributes
  * // Additonal methods for Task 3
@@ -82,6 +98,8 @@ protected:
 	Iterator1D* bag1D_;
 	Iterator2D* bag2D_;
 
+	SkillAdvancement* skillNodes_;
+
 
 public:
 	/**
@@ -112,6 +130,59 @@ public:
 	 * @brief The destructor of the character class
 	*/
 	virtual ~CharacterTask3();
+
+	/**
+	 * @brief Getter for the skill nodes of the character
+	 * @return a pointer to the head of the SkillAdvancement (double linked list)
+	*/
+	SkillAdvancement* GetSkillNodes() const;
+
+	/**
+	 * @brief Setter for the skill nodes of the character
+	 * @param skillNodes a pointer to the head of the SkillAdvancement (double linked list)
+	*/
+	void SetSkillNodes(SkillAdvancement* skillNodes);
+
+	/**
+	 * @brief This method is used to add a skill node to the character's skill nodes
+	 * @param skillNode - the skill node to be added
+	*/
+	void AddSkillNode(SkillNode* skillNode) const;
+
+	/**
+	 * @brief This method is used to add a skill node to the character's skill nodes
+	 * @param skillNode - the name of the skill node to be added
+	*/
+	void AddSkillNode(std::string& skillNode) const;
+
+	/**
+	 * @brief This method is used to remove a skill node from the character's skill nodes
+	 * @param skillNodeName - the name of the skill node to be removed
+	*/
+	void RemoveSkillNode(std::string& skillNodeName) const;
+
+	/**
+	 * @brief This method is used to upgrade a skill node in the character's skill nodes
+	 * @param skillNodeName - the name of the skill node to be upgraded
+	*/
+	void UpgradeSkillNode(std::string& skillNodeName) const;
+
+	/**
+	 * @brief This method is used to find a skill node in the character's skill nodes
+	 * @param skillName - the name of the skill node to be found
+	 * @return pointer to the skill node found
+	*/
+	SkillNode* FindSkillNode(std::string& skillName) const;
+
+	/**
+	 * @brief This method is used to show the skill nodes of the character
+	*/
+	void ShowSkillNodes() const;
+
+	/**
+	 * @brief This method allows the user to add a custom skill node to the character's skill nodes
+	 */
+	void AddUserCustomSkillNode() const;
 
 	/**
 	 * @brief Getter for the name of the character
@@ -454,7 +525,6 @@ public:
 	 * @brief Virtual function to print the character's attributes
 	*/
 	virtual void Print() const;
-
 
 };
 

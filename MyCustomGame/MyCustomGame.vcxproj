@@ -143,6 +143,8 @@
     <ClInclude Include="Iterator2D.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="RattleSnake.h" />
+    <ClInclude Include="SkillAdvancement.h" />
+    <ClInclude Include="SkillNode.h" />
     <ClInclude Include="Tool.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
@@ -160,6 +162,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="RattleSnake.cpp" />
+    <ClCompile Include="SkillAdvancement.cpp" />
+    <ClCompile Include="SkillNode.cpp" />
     <ClCompile Include="Tool.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>

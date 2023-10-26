@@ -178,16 +178,23 @@ public:
 	void ShuffleSpawnPoint() const;
 
 	/**
-	 * @brief This methods answers the questions in Problem Set 1 of the assignment.
+	 * @brief This methods answers the questions in Problem Set 1 (PS1) of the assignment.
 	*/
 	static void ProblemSet1();
 
 	/**
-	 * @brief This methods answers the questions in Problem Set 2 of the assignment. it creates
+	 * @brief This methods answers the questions in Problem Set 2 (PS2) of the assignment. it creates
 	 * two new characters and two new bags the demonstrates the bag swapping affair. It also
 	 * prints the characters and their bags to the console.
 	*/
 	static void ProblemSet2();
+
+	/**
+	 * @brief This methods answers the questions in Problem Set 3 (PS3) of the assignment. It creates
+	 * SkillNodes and the SkillAdvancement (a double linked list) and demonstrates the
+	 * tasks from the PS3 assignment.
+	*/
+	static void ProblemSet3();
 
 	/**
 	 * @brief This method shuffles the destination position of the player.

@@ -521,6 +521,90 @@ void GameEnvironment::ProblemSet2()
 
 }
 
+void GameEnvironment::ProblemSet3()
+{
+	// character name
+	string char1 = "Danger Character";
+
+	// skill names
+	string skill1 = "Sword", skill2 = "Axe", skill3 = "Mace", skill4 = "Dagger", skill5 = "Bow",
+	skill6 = "Crossbow", skill7 = "Spear", skill8 = "Halberd", skill9 = "Flail", skill10 = "Morning Star";
+
+	string statement1 = "Ad hominem: Attacking the person making the argument instead of the argument itself.",
+		statement2 = "Appeal to authority : Using an authority figure's opinion as evidence in an argument.",
+		statement3 = "Appeal to emotion : Manipulating emotions to win an argument.",
+		statement4 = "Appeal to fear: Using fear to sway someone's opinion.",
+		statement5 = "Bandwagon fallacy: Assuming something is true because many people believe it.",
+		statement6 = "Cherry picking: Selectively presenting only evidence that supports your argument while ignoring other evidence.",
+		statement7 = "False dilemma: Presenting only two options when there are more than two options available.",
+		statement8 = "Hasty generalization: Drawing a conclusion based on insufficient evidence.",
+		statement9 = "Loaded question: Asking a question that contains an assumption that is likely to be accepted by the person being questioned.",
+		statement10 = "Post hoc ergo propter hoc: Assuming that because one event followed another, the first event caused the second event.",
+		statement11 = "Red herring: Introducing an irrelevant topic to divert attention from the original issue.",
+		statement12 = "Motte and Bailey: Start with an easily defensible position but when challenged retreat to a more controversial argument.",
+		statement13 = "Slippery slope: Suggesting that one event will lead to a chain of events with increasingly negative consequences.",
+		statement14 = "Straw man: Misrepresenting someone's argument in order to make it easier to attack.",
+		statement15 = "Tu quoque: Dismissing someone's argument because they themselves are inconsistent in their beliefs or actions.";
+
+	// initialise the character
+	auto* character = new CharacterTask3(char1, 100.0f, false);
+
+	// 10 skills created as SkillNode objects then added them to the
+	// character as a skill advancement linked list
+	auto* skillNode1 = new SkillNode(skill1, 1);
+	skillNode1->AddStatement(statement1);
+	skillNode1->AddStatement(statement2);
+
+	auto* skillNode2 = new SkillNode(skill2, 2);
+	skillNode2->AddStatement(statement3);
+
+	auto* skillNode3 = new SkillNode(skill3, 3);
+	skillNode3->AddStatement(statement3);
+
+	auto* skillNode4 = new SkillNode(skill4, 4);
+	skillNode4->AddStatement(statement4);
+
+	auto* skillNode5 = new SkillNode(skill5, 5);
+	skillNode5->AddStatement(statement5);
+
+	auto* skillNode6 = new SkillNode(skill6, 6);
+	skillNode6->AddStatement(statement6);
+	skillNode6->AddStatement(statement7);
+
+	auto* skillNode7 = new SkillNode(skill7, 7);
+	skillNode7->AddStatement(statement8);
+	skillNode7->AddStatement(statement9);
+
+	auto* skillNode8 = new SkillNode(skill8, 8);
+	skillNode8->AddStatement(statement10);
+	skillNode8->AddStatement(statement11);
+
+	auto* skillNode9 = new SkillNode(skill9, 9);
+	skillNode9->AddStatement(statement12);
+	skillNode9->AddStatement(statement13);
+
+	auto* skillNode10 = new SkillNode(skill10, 10);
+	skillNode10->AddStatement(statement14);
+	skillNode10->AddStatement(statement15);
+
+	// skill advancement linked list
+	auto* skillAdvancement = new SkillAdvancement(skillNode1);
+	skillAdvancement->AppendSkill(skillNode2);
+	skillAdvancement->PrependSkill(skillNode3);
+	skillAdvancement->PrependSkill(skillNode4);
+	skillAdvancement->PrependSkill(skillNode5);
+	skillAdvancement->AppendSkill(skillNode6);
+	skillAdvancement->AppendSkill(skillNode7);
+	skillAdvancement->PrependSkill(skillNode8);
+	skillAdvancement->PrependSkill(skillNode9);
+	skillAdvancement->AppendSkill(skillNode10);
+
+	// add to the character
+	character->SetSkillNodes(skillAdvancement);
+
+	// skill nodes
+	character->AddUserCustomSkillNode();
+}
 
 void GameEnvironment::ShuffleDestination() const
 {
@@ -622,7 +706,7 @@ void GameEnvironment::ShowCharacters() const
 			cout << "===	Problem Set 3 (START)  ===" << endl;
 			cout << "=================================" << endl;
 			cout << endl;
-			cout << "Coming Soon!! " << endl;
+			ProblemSet3();
 			cout << endl;
 			cout << "===	Problem Set 3 (END)	   ===" << endl;
 		}

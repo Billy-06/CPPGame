@@ -36,11 +36,17 @@ CharacterTask3::CharacterTask3()
 	fAttackPower_ = 10;
 	shieldUp_ = false;
 
+	bag1D_ = new Iterator1D();
+	bag2D_ = new Iterator2D();
+
+	skillNodes_ = new SkillAdvancement();
+
 	// Additional message field for the chracter task 3
 	fMessage_ = "";
 }
 
-CharacterTask3::CharacterTask3(string& name, float maxHealth, bool friendly) : name_(name), fMaxHealth_(maxHealth), friendly_(friendly)
+CharacterTask3::CharacterTask3(string& name, float maxHealth, bool friendly)
+	: name_(name), friendly_(friendly), fMaxHealth_(maxHealth)
 {
 	fID_ = static_cast<float>(rand());
 	// Create some dummy attack moves
@@ -57,6 +63,10 @@ CharacterTask3::CharacterTask3(string& name, float maxHealth, bool friendly) : n
 	fCurrentHealth_ = maxHealth;
 	fAttackPower_ = 10;
 	shieldUp_ = false;
+	bag1D_ = new Iterator1D();
+	bag2D_ = new Iterator2D();
+
+	skillNodes_ = new SkillAdvancement();
 
 	// Additional message field for the chracter task 3
 	fMessage_ = "";
@@ -80,6 +90,11 @@ CharacterTask3::CharacterTask3(const CharacterTask3& character)
 	fAttackPower_ = character.fAttackPower_;
 	shieldUp_ = character.shieldUp_;
 
+	bag1D_ = character.bag1D_;
+	bag2D_ = character.bag2D_;
+
+	skillNodes_ = character.skillNodes_;
+
 	// Additional message field for the chracter task 3
 	fMessage_ = character.fMessage_;
 }
@@ -87,7 +102,209 @@ CharacterTask3::CharacterTask3(const CharacterTask3& character)
 CharacterTask3::~CharacterTask3()
 {
 	delete fPosition_;
+
+	delete bag1D_;
+	delete bag2D_;
+
+	delete skillNodes_;
 }
+
+SkillAdvancement* CharacterTask3::GetSkillNodes() const
+{
+	return skillNodes_;
+}
+
+void CharacterTask3::SetSkillNodes(SkillAdvancement* skillNodes)
+{
+	skillNodes_ = skillNodes;
+}
+
+void CharacterTask3::AddSkillNode(SkillNode* skillNode) const
+{
+	skillNodes_->AppendSkill(skillNode);
+}
+
+void CharacterTask3::AddSkillNode(string& skillNode) const
+{
+	int level = 1;
+	SkillNode* skill = new SkillNode(skillNode, level);
+	skillNodes_->AppendSkill(skill);
+}
+
+void CharacterTask3::RemoveSkillNode(string& skillNode) const
+{
+	SkillNode* skill = skillNodes_->FindSkill(skillNode);
+	skillNodes_->RemoveSkill(skill);
+}
+
+void CharacterTask3::UpgradeSkillNode(std::string& skillNodeName) const
+{
+	SkillNode* skillNode = skillNodes_->FindSkill(skillNodeName);
+	skillNode->LevelUp();
+}
+
+SkillNode* CharacterTask3::FindSkillNode(std::string& skillName) const
+{
+	return skillNodes_->FindSkill(skillName);
+}
+
+void CharacterTask3::ShowSkillNodes() const
+{
+	SkillNode* temp = skillNodes_->GetHeadSkill();
+	while (temp->GetUpgrade() != nullptr)
+	{
+		temp->PrintDetails();
+		temp = temp->GetUpgrade();
+	}
+	temp->PrintDetails();
+}
+
+void CharacterTask3::AddUserCustomSkillNode() const
+{
+	string response;
+
+	while (true)
+	{
+		cout << "Please select what you would like to do from the below options:\n";
+		cout << "Enter the letter encircled in the square brackets e.g type f for option [f]\n";
+		cout << "Type back or leave to go back to the main Menu\n";
+		cout << "1). Find a Skill [f]\n";
+		cout << "2). Add a Skill [a]\n";
+		cout << "3). Remove a Skill [r]\n";
+		cout << "4). View Skills [v]\n";
+		cout << "5). Edit a Skill [e]\n";
+
+		vector<string> skillNames;
+		SkillNode* temp = skillNodes_->GetHeadSkill();
+		while (temp != nullptr)
+		{
+			skillNames.push_back(temp->GetName());
+			temp = temp->GetUpgrade();
+		}
+
+		string findSkl = "f", addSkl = "a", removeSkl = "r", viewSkl = "v", editSkl = "e",
+			leaveSkl = "leave", exitSkl="exit";
+
+		getline(cin, response);
+
+		
+		if (response == findSkl)
+		{
+			cout << "Please enter the name of the skill you would like to find" << endl;
+			getline(cin, response);
+			if (find(skillNames.begin(), skillNames.end(), response) == skillNames.end())
+			{
+				cout << "Skill not found" << endl;
+				cout << "Please Make sure to type the full name (case sensitive)" << endl;
+			}
+			else
+			{
+				cout << "Skill found" << endl;
+				FindSkillNode(response)->PrintDetails();
+			}
+		}
+		else if (response == addSkl)
+		{
+			cout << "Please enter the name of the skill you would like to add" << endl;
+			getline(cin, response);
+			if (find(skillNames.begin(), skillNames.end(), response) != skillNames.end())
+			{
+				cout << "Skill already Exists found" << endl;
+				cout << "Please Provide a skill name that does not already exist" << endl;
+			}
+			else
+			{
+				string skillName = response;
+				AddSkillNode(skillName);
+				cout << "Skill Added successfully" << endl;
+				cout << "\n" << endl;
+				cout << "\n" << endl;
+				ShowSkillNodes();
+			}
+		}
+		else if (response == removeSkl)
+		{
+			cout << "Please enter the name of the skill you would like to remove" << endl;
+			getline(cin, response);
+			if (find(skillNames.begin(), skillNames.end(), response) == skillNames.end())
+			{
+				cout << "Skill not found" << endl;
+				cout << "Please Make sure to type the full name (case sensitive)" << endl;
+			}
+			else
+			{
+				cout << "Skill found" << endl;
+				RemoveSkillNode(response);
+				cout << "Deletion Successful" << endl;
+			}
+		}
+		else if (response == viewSkl)
+		{
+			ShowSkillNodes();
+		}
+		else if (response == editSkl)
+		{
+			cout << "Please enter the full name of the skill you would like to edit" << endl;
+			cout << "You can view skill to check what skills are available" << endl;
+			getline(cin, response);
+			if (find(skillNames.begin(), skillNames.end(), response) == skillNames.end())
+			{
+				cout << "Skill not found" << endl;
+				cout << "Please Make sure to type the full name (case sensitive)" << endl;
+			}
+			else
+			{
+				cout << "Skill found" << endl;
+				FindSkillNode(response)->PrintDetails();
+
+				bool changed = false;
+				string change;
+				string option1 = "c", option2 = "u";
+
+				while (!changed)
+				{
+					cout << "What would you like to change about the Skill?" << endl;
+					cout << "Type the letter enclosed in square brackets e.g c for option [c]\n" << endl;
+					cout << "1). Change Name [c]\n";
+					cout << "2). Upgrade [u]" << endl;
+					getline(cin, change);
+					if (change == option1)
+					{
+						cout << "Please enter the new name of the skill" << endl;
+						getline(cin, change);
+						FindSkillNode(response)->SetName(change);
+						cout << "Name Change Successful" << endl;
+						changed = true;
+					}
+					else if (change == option2)
+					{
+						UpgradeSkillNode(response);
+						cout << "Upgrade Successful" << endl;
+						changed = true;
+					}
+					else if ( change == leaveSkl || change == exitSkl)
+					{
+						break;
+					}
+					else
+					{
+						cout << "Invalid Response" << endl;
+					}
+				}
+
+			}
+		}
+		else if (response == leaveSkl || response == exitSkl)
+		{
+			break;
+		}
+		else
+		{
+			cout << "Invalid Response" << endl;
+		}
+	}
+}
+
 
 string CharacterTask3::GetName() const
 {
@@ -293,7 +510,6 @@ istream& operator>>(istream& in, CharacterTask3& character)
 		cout << "Invalid Command" << endl;
 		getline(in, message);
 	}
-
 	
 	stringstream ss(message);
 	for (auto& i : parsedCommand)
