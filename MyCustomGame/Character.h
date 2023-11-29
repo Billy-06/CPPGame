@@ -31,7 +31,7 @@
  * > _fCurrentHealth {float} : The current health of the character
  * > _fAttackPower {float} : The attack power of the character
  * > _sensingRadius {float} : The sensing radius of the character
- * > _shielsUp {bool} : The shield status of the character
+ * > _shieldUp {bool} : The shield status of the character
  *
  * Methods
  * -------

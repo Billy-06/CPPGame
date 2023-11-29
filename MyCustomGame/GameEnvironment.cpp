@@ -606,6 +606,11 @@ void GameEnvironment::ProblemSet3()
 	character->AddUserCustomSkillNode();
 }
 
+void GameEnvironment::ProblemSet4()
+{
+	cout << "Coming Soon!! " << endl;
+}
+
 void GameEnvironment::ShuffleDestination() const
 {
 	// generate a random number between 0 and the size of the environs list

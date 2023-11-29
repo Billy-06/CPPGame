@@ -197,6 +197,12 @@ public:
 	static void ProblemSet3();
 
 	/**
+	 * @brief This methods answers the questions in Problem Set 4 (PS4) of the assignment. It creates
+	 *
+	*/
+	static void ProblemSet4();
+
+	/**
 	 * @brief This method shuffles the destination position of the player.
 	*/
 	void ShuffleDestination() const;

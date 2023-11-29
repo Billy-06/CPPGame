@@ -1,7 +1,19 @@
-﻿  CharacterTask3.cpp
+﻿  Backpack.cpp
+  Camel.cpp
+  CamelSpider.cpp
+  Character.cpp
+  CharacterTask3.cpp
+  Environ.cpp
+  Equipment.cpp
   GameEnvironment.cpp
+  Iterator1D.cpp
+  Iterator2D.cpp
+  main.cpp
+  Position.cpp
+  RattleSnake.cpp
   SkillAdvancement.cpp
   SkillNode.cpp
-  main.cpp
+  Tool.cpp
+  Weapon.cpp
   Generating Code...
   MyCustomGame.vcxproj -> C:\Users\User\Documents\GitHub\UniProjects\COS3008_DataStructures\MyCustomGame\x64\Debug\MyCustomGame.exe
